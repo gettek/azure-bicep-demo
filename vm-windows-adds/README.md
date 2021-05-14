@@ -1,6 +1,6 @@
 # Deploy Windows Servers for Active Directory Domain Services
 
-This was modified from [101-vm-simple-windows](https://github.com/Azure/bicep/tree/main/docs/examples/101/vm-simple-windows) taken from the main Bicep repo.
+Modified from the main Bicep repo [101-vm-simple-windows](https://github.com/Azure/bicep/tree/main/docs/examples/101/vm-simple-windows)
 
 - [Deploy Windows Servers for Active Directory Domain Services](#deploy-windows-servers-for-active-directory-domain-services)
   - [Getting Started](#getting-started)
@@ -68,7 +68,7 @@ $addsDsrmPassword = New-RandomPassword -MinimumPasswordLength 15 -MaximumPasswor
 az deployment group create -f main.bicep -g $rgName --parameters virtualMachineExtensionCustomScriptEncoded=$virtualMachineExtensionCustomScriptEncoded secretExpiry=$secretExpiry virtualMachineAdminPassword=$virtualMachineAdminPassword addsDsrmPassword=$addsDsrmPassword
 ```
 
-> **Note:** I have stored some of the parameters in the actual template to simplify testing but these should be cleared and parsed via the deployment pipelines as extra parameter values as above.
+> **Note:** Some of the parameters are stored in the actual template to simplify testing but these should only be parsed via the deployment pipelines as extra parameter values seen above.
 
 
 ## Function to generate a random password
