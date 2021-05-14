@@ -48,7 +48,7 @@ resource vmext 'Microsoft.Compute/virtualMachines/extensions@2020-06-01' = [for 
 
 ## Single line AZ deployment
 
-```bash
+```powershell
 $rgName = "rg-dev-uks-hub-adds"
 $secretExpiry = (Get-Date(Get-Date).AddDays(365).ToUniversalTime() -UFormat "%s")
 $virtualMachineExtensionCustomScriptEncoded = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($(Get-Content setup.ps1 -Raw)))
