@@ -3,21 +3,11 @@
 Modified from the main Bicep repo [101-vm-simple-windows](https://github.com/Azure/bicep/tree/main/docs/examples/101/vm-simple-windows)
 
 - [Deploy Windows Servers for Active Directory Domain Services](#deploy-windows-servers-for-active-directory-domain-services)
-  - [Getting Started](#getting-started)
   - [KeyVault Expiry Dates](#keyvault-expiry-dates)
   - [Encoding the Custom Script](#encoding-the-custom-script)
     - [Decoding the Custom script resource with Parameters](#decoding-the-custom-script-resource-with-parameters)
   - [Single line AZ deployment](#single-line-az-deployment)
   - [Function to generate a random password](#function-to-generate-a-random-password)
-
-## Getting Started
-
-* [Install the Bicep CLI](https://github.com/Azure/bicep/blob/main/docs/installing.md) by following the instruction.
-* Build the `main.bicep` file by running the Bicep CLI command, this will generate the ARM:
-
-```bash
-bicep build ./main.bicep
-```
 
 ## KeyVault Expiry Dates
 
