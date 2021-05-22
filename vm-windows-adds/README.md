@@ -8,6 +8,7 @@ Modified from the main Bicep repo [101-vm-simple-windows](https://github.com/Azu
     - [Decoding the Custom script resource with Parameters](#decoding-the-custom-script-resource-with-parameters)
   - [Single line AZ deployment](#single-line-az-deployment)
   - [Function to generate a random password](#function-to-generate-a-random-password)
+  - [Post ADDS Setup](#post-adds-setup)
 
 ## KeyVault Expiry Dates
 
@@ -21,7 +22,7 @@ $secretExpiry = (Get-Date(Get-Date).AddDays(365).ToUniversalTime() -UFormat "%s"
 
 ## Encoding the Custom Script
 
-Created a Base64 encoded value of the custom script will avoid the need for storing/obtaining from another source such Storage Account. This will be decoded back once the extension executes locally on the vm.
+Creating a Base64 encoded value of the custom script will avoid the need for storing/obtaining from another source such Storage Account. This will be decoded back once the extension executes locally on the vm.
 
 ```powershell
 $virtualMachineExtensionCustomScriptEncoded = ([Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($(Get-Content -Path .\setup.ps1 -Raw))))
@@ -84,3 +85,8 @@ function New-RandomPassword {
     }
 }
 ```
+
+## Post ADDS Setup
+
+- Can be ran manually using [post_setup.ps1](post_setup.ps1)
+- Or this [Chef cookbook](../chef.cookbook.windows_ad) courtesy of [TAMUArch/cookbook.windows_ad](https://github.com/TAMUArch/cookbook.windows_ad)
