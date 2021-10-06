@@ -24,7 +24,13 @@ $secretExpiry = (Get-Date(Get-Date).AddDays(365).ToUniversalTime() -UFormat "%s"
 
 Creating a Base64 encoded value of the custom script will avoid the need for storing/obtaining from another source such Storage Account. This will be decoded back once the extension executes locally on the vm.
 
+```bicep
+@secure()
+param virtualMachineExtensionCustomScriptEncoded string = base64((loadTextContent('./setup.ps1')))
+```
+
 ```powershell
+## using PowerShell
 $virtualMachineExtensionCustomScriptEncoded = ([Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($(Get-Content -Path .\setup.ps1 -Raw))))
 ```
 
@@ -52,7 +58,6 @@ resource vmext 'Microsoft.Compute/virtualMachines/extensions@2020-06-01' = [for 
 ```powershell
 $rgName = "rg-dev-uks-hub-adds"
 $secretExpiry = (Get-Date(Get-Date).AddDays(365).ToUniversalTime() -UFormat "%s")
-$virtualMachineExtensionCustomScriptEncoded = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($(Get-Content setup.ps1 -Raw)))
 $virtualMachineAdminPassword = New-RandomPassword -MinimumPasswordLength 15 -MaximumPasswordLength 20 -NumberOfAlphaNumericCharacters 6
 $addsDsrmPassword = New-RandomPassword -MinimumPasswordLength 15 -MaximumPasswordLength 20 -NumberOfAlphaNumericCharacters 6
 
@@ -89,4 +94,3 @@ function New-RandomPassword {
 ## Post ADDS Setup
 
 - Can be ran manually using [post_setup.ps1](post_setup.ps1)
-- Or this [Chef cookbook](../chef.cookbook.windows_ad) courtesy of [TAMUArch/cookbook.windows_ad](https://github.com/TAMUArch/cookbook.windows_ad)
