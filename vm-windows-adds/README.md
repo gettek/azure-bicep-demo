@@ -61,7 +61,7 @@ $secretExpiry = (Get-Date(Get-Date).AddDays(365).ToUniversalTime() -UFormat "%s"
 $virtualMachineAdminPassword = New-RandomPassword -MinimumPasswordLength 15 -MaximumPasswordLength 20 -NumberOfAlphaNumericCharacters 6
 $addsDsrmPassword = New-RandomPassword -MinimumPasswordLength 15 -MaximumPasswordLength 20 -NumberOfAlphaNumericCharacters 6
 
-az deployment group create -f main.bicep -g $rgName --parameters virtualMachineExtensionCustomScriptEncoded=$virtualMachineExtensionCustomScriptEncoded secretExpiry=$secretExpiry virtualMachineAdminPassword=$virtualMachineAdminPassword addsDsrmPassword=$addsDsrmPassword
+az deployment group create -f main.bicep -g $rgName --parameters secretExpiry=$secretExpiry virtualMachineAdminPassword=$virtualMachineAdminPassword addsDsrmPassword=$addsDsrmPassword
 ```
 
 > **Note:** Some of the parameters are stored in the actual template to simplify testing but these should only be parsed via the deployment pipelines as extra parameter values seen above.
